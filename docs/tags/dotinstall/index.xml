@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dotinstall on Memo</title>
+    <link>https://sn2562.github.io/blog/tags/dotinstall/</link>
+    <description>Recent content in Dotinstall on Memo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>UTF-8</language>
+    <lastBuildDate>Sun, 18 Jun 2017 19:45:21 +0900</lastBuildDate>
+    
+	<atom:link href="https://sn2562.github.io/blog/tags/dotinstall/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>20170618_php</title>
+      <link>https://sn2562.github.io/blog/post/20170618_php/</link>
+      <pubDate>Sun, 18 Jun 2017 19:45:21 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/post/20170618_php/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

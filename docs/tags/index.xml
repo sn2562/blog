@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Memo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Sun, 18 Jun 2017 17:19:15 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 18 Jun 2017 19:45:21 +0900</lastBuildDate>
     
 	<atom:link href="https://sn2562.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dotinstall</title>
+      <link>https://sn2562.github.io/blog/tags/dotinstall/</link>
+      <pubDate>Sun, 18 Jun 2017 19:45:21 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/tags/dotinstall/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Hugo</title>
@@ -17,6 +26,15 @@
       <pubDate>Sun, 18 Jun 2017 17:19:15 +0900</pubDate>
       
       <guid>https://sn2562.github.io/blog/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Php</title>
+      <link>https://sn2562.github.io/blog/tags/php/</link>
+      <pubDate>Sun, 18 Jun 2017 19:45:21 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/tags/php/</guid>
       <description></description>
     </item>
     

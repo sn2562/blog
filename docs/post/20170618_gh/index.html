@@ -115,7 +115,7 @@ title = &quot;poyo&quot;
 
 <p>任意のテーマpiyo_themeを適用させたいときは<code>--theme=</code>の引数か<code>-t</code>で指定してあげる．</p>
 
-<pre><code>$ hugo server --theme=piyo_theme --buildDrafts
+<pre><code>$ hugo server -- theme=piyo_theme --buildDrafts
 # あるいは
 $ hugo server -t piyo_theme
 </code></pre>
@@ -237,7 +237,7 @@ cd ..
 </tr>
 
 <tr>
-<td align="left">$ hugo server - -buildDrafts</td>
+<td align="left">$ hugo server &ndash;buildDrafts</td>
 <td align="left">下書きも表示確認</td>
 </tr>
 
@@ -260,7 +260,8 @@ cd ..
 
           </div>
         </div>
-        <div class="pagination"> 
+        <div class="pagination">
+          <a class="btn previous " href="https://sn2562.github.io/blog/post/20170618_php/"> Prev</a>  
         </div>
       </div>
     </div>
