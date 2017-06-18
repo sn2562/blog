@@ -4,3 +4,6 @@ languageCode = "UTF-8"
 title = "Memo"
 canonifyurls = true
 publishDir = "docs"
+
+[Params]
+  Author = "sn2562"
