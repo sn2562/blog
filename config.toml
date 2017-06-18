@@ -1,0 +1,6 @@
+baseURL = "https://sn2562.github.io/blog/"
+theme = "slim"
+languageCode = "UTF-8"
+title = "Memo"
+canonifyurls = true
+publishDir = "docs"
