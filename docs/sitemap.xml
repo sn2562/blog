@@ -3,12 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://sn2562.github.io/blog/post/githubpages_hugo/</loc>
+    <loc>https://sn2562.github.io/blog/post/20170618_gh/</loc>
     <lastmod>2017-06-18T17:19:15+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://sn2562.github.io/blog/categories/</loc>
+    <loc>https://sn2562.github.io/blog/tags/hugo/</loc>
+    <lastmod>2017-06-18T17:19:15+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -26,6 +27,7 @@
   
   <url>
     <loc>https://sn2562.github.io/blog/tags/</loc>
+    <lastmod>2017-06-18T17:19:15+09:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Memo</title>
-    <link>https://sn2562.github.io/blog/</link>
-    <description>Recent content on Memo</description>
+    <title>Hugo on Memo</title>
+    <link>https://sn2562.github.io/blog/tags/hugo/</link>
+    <description>Recent content in Hugo on Memo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
     <lastBuildDate>Sun, 18 Jun 2017 17:19:15 +0900</lastBuildDate>
     
-	<atom:link href="https://sn2562.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sn2562.github.io/blog/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

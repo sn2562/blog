@@ -5,5 +5,8 @@ title = "Memo"
 canonifyurls = true
 publishDir = "docs"
 
+[taxonomies]
+tag = "tags"
+
 [Params]
   Author = "sn2562"
