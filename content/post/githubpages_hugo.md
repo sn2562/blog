@@ -1,11 +1,9 @@
 +++
 date = "2017-06-18T17:19:15+09:00"
 draft = false
-title = "githubpages_hugo"
+title = "GitHub Pages + Hugoで日記を公開する"
 
 +++
-# GitHub Pages + Hugoで日記を公開する
-
 GitHubでブログを公開している人たちがいてカッコイイ！と思ったのでやってみる．
 
 ## 使用技術

@@ -12,17 +12,17 @@
     
     
     <item>
-      <title>githubpages_hugo</title>
+      <title>GitHub Pages &#43; Hugoで日記を公開する</title>
       <link>https://sn2562.github.io/blog/post/githubpages_hugo/</link>
       <pubDate>Sun, 18 Jun 2017 17:19:15 +0900</pubDate>
       
       <guid>https://sn2562.github.io/blog/post/githubpages_hugo/</guid>
-      <description>GitHub Pages + Hugoで日記を公開する GitHubでブログを公開している人たちがいてカッコイイ！と思ったのでやってみる．
+      <description>GitHubでブログを公開している人たちがいてカッコイイ！と思ったのでやってみる．
 使用技術  Hugo  Hugo ブログとかポートフォリオみたいなサイトを作るサイトジェネレータ．Go製． .mdとか書いたらいい感じにサイトっぽくしたヤツをつくってくれる.  GitHub Pages  GitHub Pages githubのリポジトリ下にhtmlファイルとかおいて公開できる．   Hugoを使ってみる 基本的にはHugo Quickstart Guideを見ながら進めれば大丈夫．不安になったらhugo + Github Pagesでブログ作成に挑戦した話やHugoとGitHub Pagesで静的サイトを公開するが丁寧に教えてくれているので参考にする．だいたいは新しいページを作ってローカル環境で確認後Github Pagesで公開するって流れだった．
 Quickstart Guideのメモ Step 3. 記事の追加 記事コンテンツを新しく追加したいときはhugo newコマンドを使う.
 $ hugo new post/poyo.md  これでcontent/post下にpoyo.mdが生成されるので書き換えて記事をつくる．
 +++ date = &amp;quot;2017-06-18T16:11:58+05:30&amp;quot; draft = true title = &amp;quot;poyo&amp;quot; +++ 記事の内容.  +++で囲まれた所をfront matterっていって記事の設定とかができるらしい．記事内容はその下に書いていく。
- date 日付 draft 記事の下書き設定．デフォルトはtrue． title 記事の表示タイトル image 記事のキャッチとして画像urlを文字列で設定できる．画像の置場所はstatic/images下．  Step 4.</description>
+ date 日付 draft 記事の下書き設定．デフォルトはtrue． title 記事の表示タイトル image 記事のキャッチとして画像urlを文字列で設定できる．画像の置場所はstatic/images下．  Step 4. hugo起動 - Step 5.</description>
     </item>
     
   </channel>
