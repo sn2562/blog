@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>https://sn2562.github.io/blog/post/poyo/</loc>
-    <lastmod>2017-06-18T15:21:15+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://sn2562.github.io/blog/post/test/</loc>
-    <lastmod>2017-06-17T22:45:41+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://sn2562.github.io/blog/categories/</loc>
-    <priority>0</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
     <loc>https://sn2562.github.io/blog/</loc>
@@ -24,14 +8,23 @@
   </url>
   
   <url>
-    <loc>https://sn2562.github.io/blog/post/</loc>
+    <loc>https://sn2562.github.io/blog/post/poyo/</loc>
     <lastmod>2017-06-18T15:21:15+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://sn2562.github.io/blog/tags/</loc>
-    <priority>0</priority>
+    <loc>https://sn2562.github.io/blog/post/good-to-great/</loc>
+    <lastmod>2017-06-18T00:04:12+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sn2562.github.io/blog/post/hoge/</loc>
+    <lastmod>2017-06-17T23:58:35+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sn2562.github.io/blog/post/test/</loc>
+    <lastmod>2017-06-17T22:45:41+09:00</lastmod>
   </url>
   
 </urlset>
