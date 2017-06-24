@@ -17,6 +17,23 @@
 
 <link href="" rel="alternate" type="application/rss+xml" title="Memo" />
 
+
+<style type="text/css">
+    code.has-jax {font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;}
+
+    code{
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #0098C0;
+        background-color: #F8FBFF;
+        border-radius: 4px;
+    }
+</style>
+
 </head>
 
 <body>
@@ -783,17 +800,40 @@ unset($_SESSION['username']);
 
           </div>
         </div>
-        <div class="pagination"> 
+        <div class="pagination">
+          <a class="btn previous " href="https://sn2562.github.io/blog/post/20170624_hugo/"> Prev</a>  
           <a class="btn next " href="https://sn2562.github.io/blog/post/20170618_gh/"> Next</a> 
         </div>
       </div>
     </div>
     
     <div class="footer">
-  
-  <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
-  
+    
+    <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+    
 </div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+        extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+});
+</script>
 
   </div>
   <script src="https://sn2562.github.io/blog/js/slim.js"></script>

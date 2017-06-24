@@ -6,10 +6,24 @@
     <description>Recent content in Hugo on Memo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Sun, 18 Jun 2017 17:19:15 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 24 Jun 2017 19:50:38 +0900</lastBuildDate>
     
 	<atom:link href="https://sn2562.github.io/blog/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hugoに数式を導入する</title>
+      <link>https://sn2562.github.io/blog/post/20170624_hugo/</link>
+      <pubDate>Sat, 24 Jun 2017 19:50:38 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/post/20170624_hugo/</guid>
+      <description>HUGO MathJax 公式の導入ドキュメント。 日本語で書いてくれている人もいた。MathJax の導入 ここの通りにやればできる。  MathJaxってなーに HTMLやMarkdownのソースにLaTeX形式の構文で数式が書けるようにするJavaScriptライブラリ。
+MathJaxの導入 HUGO上でこのライブラリを読み込んで動かすのはすごく簡単。ページにMathJaxライブラリを読みこむ設定をする。themesフォルダにあるテンプレート下のlayouts/partials/footer.htmlに以下を追記する。
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;quot;&amp;gt; &amp;lt;/script&amp;gt;  ちなみにMathJaxの公式はここ。2017/4/25でCDNのホスティングサイト閉じてしまっているらしかった。記事の中ほどで現在は https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js で公開中と紹介されていた。
+ヒント Markdownと記法が競合するので、ここまでの設定では必ず数式を書く時は\でエスケープしなければいけない。長い数式を書く時には\がいっぱいになっちゃって大変。 あとはインラインにしたい時&amp;lt;div&amp;gt;で囲う話しとか。そのへんのヒントが公式サイトにまとめられている。
+layouts/partials/footer.html
+&amp;lt;!-- MathJax --&amp;gt; &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script type=&amp;quot;text/x-mathjax-config&amp;quot;&amp;gt; MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&amp;quot;\\(&amp;quot;,&amp;quot;\\)&amp;quot;]] } }); &amp;lt;/script&amp;gt; &amp;lt;script type=&amp;quot;text/x-mathjax-config&amp;quot;&amp;gt; MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;], [&#39;\[&#39;,&#39;\]&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &amp;quot;AMS&amp;quot; }, extensions: [&amp;quot;AMSmath.</description>
+    </item>
     
     <item>
       <title>GitHub Pages &#43; Hugoで日記を公開する</title>

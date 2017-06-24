@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> hugoに数式を導入する &middot; Memo </title>
+
+
+<link rel="stylesheet" href="https://sn2562.github.io/blog/css/slim.css">
+<link rel="stylesheet" href="https://sn2562.github.io/blog/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://sn2562.github.io/blog/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://sn2562.github.io/blog/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Memo" />
+
+
+<style type="text/css">
+    code.has-jax {font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;}
+
+    code{
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #0098C0;
+        background-color: #F8FBFF;
+        border-radius: 4px;
+    }
+</style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://sn2562.github.io/blog/">Memo</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+  
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://sn2562.github.io/blog/post/20170624_hugo/">hugoに数式を導入する</a></h2>
+          <span class="post-date">Jun 24, 2017 </span>
+          <div class="post-content">
+            
+
+<!-- # hugoに数式を導入する -->
+
+<ul>
+<li><a href="https://gohugo.io/tutorials/mathjax/">HUGO MathJax</a> 公式の導入ドキュメント。</li>
+<li>日本語で書いてくれている人もいた。<a href="http://tubo28.me/blog/post/2015/03/22/mathjax/">MathJax の導入</a> ここの通りにやればできる。</li>
+</ul>
+
+<h2 id="mathjaxってなーに">MathJaxってなーに</h2>
+
+<p>HTMLやMarkdownのソースにLaTeX形式の構文で数式が書けるようにするJavaScriptライブラリ。</p>
+
+<h2 id="mathjaxの導入">MathJaxの導入</h2>
+
+<p>HUGO上でこのライブラリを読み込んで動かすのはすごく簡単。ページにMathJaxライブラリを読みこむ設定をする。themesフォルダにあるテンプレート下のlayouts/partials/footer.htmlに以下を追記する。</p>
+
+<pre><code>&lt;script type=&quot;text/javascript&quot;
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+</code></pre>
+
+<p>ちなみにMathJaxの公式は<a href="https://www.mathjax.org/cdn-shutting-down/">ここ</a>。2017/4/25でCDNのホスティングサイト閉じてしまっているらしかった。記事の中ほどで現在は <a href="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js">https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js</a> で公開中と紹介されていた。</p>
+
+<!--
+## 書く
+`$ TeX Code $` or `\( TeX Code \)`
+
+- $ x_2 $
+- $ f(x) = x^4 + 3 x^3 + \dfrac{1}{x} $
+- $ x \to y $
+- $ x \in X $
+- $ O(N \log N) $
+- $ {\displaystyle \int_{-\infty}^{\infty} f(t) e^{- j \omega t} {\mathrm d}t } $
+-->
+
+<h2 id="ヒント">ヒント</h2>
+
+<p>Markdownと記法が競合するので、ここまでの設定では必ず数式を書く時は\でエスケープしなければいけない。長い数式を書く時には\がいっぱいになっちゃって大変。
+あとはインラインにしたい時&lt;div&gt;で囲う話しとか。そのへんのヒントが<a href="https://gohugo.io/tutorials/mathjax/">公式サイト</a>にまとめられている。</p>
+
+<p>layouts/partials/footer.html</p>
+
+<pre><code>&lt;!-- MathJax --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], [&quot;\\(&quot;,&quot;\\)&quot;]] } });
+&lt;/script&gt;
+
+&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; },
+        extensions: [&quot;AMSmath.js&quot;, &quot;AMSsymbols.js&quot;] }
+    }
+});
+&lt;/script&gt;
+
+</code></pre>
+
+<p>layouts/partials/head.html</p>
+
+<pre><code>&lt;!-- CSS --&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    code.has-jax {font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;}
+
+    code{
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #0098C0;
+        background-color: #F8FBFF;
+        border-radius: 4px;
+    }
+&lt;/style&gt;
+</code></pre>
+
+          </div>
+        </div>
+        <div class="pagination"> 
+          <a class="btn next " href="https://sn2562.github.io/blog/post/20170618_php/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+    
+    <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+    
+</div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+        extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+});
+</script>
+
+  </div>
+  <script src="https://sn2562.github.io/blog/js/slim.js"></script>
+  <script src="https://sn2562.github.io/blog/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+</body>
+
+</html>
