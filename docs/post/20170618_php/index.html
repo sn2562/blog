@@ -63,9 +63,9 @@ Zend Engine v2.6.0, Copyright (c) 1998-2016 Zend Technologies
 
 <h2 id="02-はじめてのphpプログラム">02 はじめてのPHPプログラム</h2>
 
-<h3 id="開始タグと終了タグ">開始タグと終了タグ</h3>
+<h3 id="開始タグと終了タグ-02-1">開始タグと終了タグ<sup class="footnote-ref" id="fnref:02-1"><a rel="footnote" href="#fn:02-1">1</a></sup></h3>
 
-<pre><code>&lt;? php
+<pre><code>&lt;?php
 ?&gt;
 </code></pre>
 
@@ -692,7 +692,7 @@ div(5,0);
 <pre><code>cannot divide by 0
 </code></pre>
 
-<h2 id="27-例外処理をしてみよう-1">27 例外処理をしてみよう</h2>
+<h2 id="28-フォームからのデータを処理しよう">28 フォームからのデータを処理しよう</h2>
 
 <ul>
 <li>文字列をいれると文字数をチェックしてくれるphp</li>
@@ -730,6 +730,59 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){ //定義済み変数$_SERVERのREQUEST
 &lt;/form&gt;
 
 </code></pre>
+
+<h2 id="29-cookieを使ってみよう">29 Cookieを使ってみよう</h2>
+
+<p>アクセスしてきたユーザのブラウザに情報をセットする。</p>
+
+<p>ブラウザを閉じるまで有効な値をセットする</p>
+
+<pre><code>//ブラウザを閉じるまで有効
+setcookie(&quot;username&quot;,&quot;taguchi&quot;);
+</code></pre>
+
+<p>基準日からの経過秒で有効期限付きで値をセットする</p>
+
+<pre><code>setcookie(&quot;username&quot;,&quot;taguchi&quot;,time()+60*60);
+</code></pre>
+
+<p>ブラウザに保存されている値を呼び出す</p>
+
+<pre><code>echo $_COOKIE['username'];
+</code></pre>
+
+<h2 id="30-セッションを使ってみよう">30 セッションを使ってみよう</h2>
+
+<p>アクセスしてきたブラウザに応じて保存
+ただしサーバ側にデータを保存する。coockieに比べて大きなデータが保存できる。
+coockieは中身を覗いたり改ざんできてしまう可能性がある。</p>
+
+<p>値のセット</p>
+
+<pre><code>session_start();//セッションを利用する時は必ず宣言する
+$_SESSION['username'] = &quot;taguchi&quot;;//値の設定
+</code></pre>
+
+<p>値の取り出し</p>
+
+<pre><code>session_start();
+echo $_SESSION['username'];
+</code></pre>
+
+<p>値の削除</p>
+
+<pre><code>session_start();
+unset($_SESSION['username']);
+</code></pre>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:02-1">20170624 追記 最後の<code>?&gt;</code>はお作法として書かないらしい。
+ <a class="footnote-return" href="#fnref:02-1"><sup>[return]</sup></a></li>
+</ol>
+</div>
 
           </div>
         </div>
