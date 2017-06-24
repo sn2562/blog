@@ -17,9 +17,10 @@
       <pubDate>Sun, 18 Jun 2017 19:45:21 +0900</pubDate>
       
       <guid>https://sn2562.github.io/blog/post/20170618_php/</guid>
-      <description>ドットインストール / PHP入門 SideCI  01 PHPを使ってみよう PHPバージョンの確認
+      <description>ドットインストール / PHP入門をお勉強したのでメモ。
+01 PHPを使ってみよう PHPバージョンの確認
 $ php -v  PHP 5.6.30 (cli) (built: Mar 11 2017 09:56:18) Copyright (c) 1997-2016 The PHP Group Zend Engine v2.6.0, Copyright (c) 1998-2016 Zend Technologies with Xdebug v2.5.4, Copyright (c) 2002-2017, by Derick Rethans  02 はじめてのPHPプログラム 開始タグと終了タグ1 &amp;lt;?php ?&amp;gt;  コメント //コメント /* コメント コメント コメント */  03 ビルトインWebサーバーを使ってみよう phpファイルを見るにはビルドインサーバが必要．phpが用意してくれている簡易サーバを使ってビルドする．
-自分のipアドレスを確認する $ ifconfig  ビルドインサーバを立ち上げる $ php -S 192.</description>
+自分のipアドレスを確認する $ ifconfig  ビルドインサーバを立ち上げる $ php -S 192.168.33.100:8000  PHP 5.</description>
     </item>
     
     <item>
