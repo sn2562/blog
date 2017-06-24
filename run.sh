@@ -17,7 +17,7 @@ git add .
 # Commit changes.引数があれば第一引数をcommit messageに設定.
 msg="rebuilding site `date '+%Y%m%d %H:%S'`"
 if [ $# -eq 1 ]
-  then msg = "$msg $1"
+  then msg = "${msg} ${1}"
 fi
 git commit -m "$msg"
 
