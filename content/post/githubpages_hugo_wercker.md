@@ -44,7 +44,7 @@ title = "poyo"
 
 記事の内容.
 ```
-`+++`で囲まれた所をfront matterっていって記事の設定とかができるらしい．記事内容はその下に書いていく。
+`+++`で囲まれた所をfront matterっていって記事の設定とかができるらしい．記事内容はその下に書いていく．
 - date	日付
 - draft	記事の下書き設定．デフォルトは`true`．
 - title	記事の表示タイトル
@@ -93,7 +93,7 @@ $hugo server -t hugo_theme_robust --watch
 $ hugo undraft content/post/good-to-great.md
 ```
 
-これでhugoを起動すれば、`---buildDrafts`無しの状態で記事が見れるようになる．
+これでhugoを起動すれば，`---buildDrafts`無しの状態で記事が見れるようになる．
 
 ```
 $ hugo server --theme=hugo_theme_robust
@@ -120,7 +120,7 @@ $ hugo --theme=hugo_theme_robust
 設定したURLに対応した公開用の`/public`ディレクトリを作ってくれる，
 
 #### GihHub Pagesにデプロイする
-まずはファイル全体をgitの管理下に置くための下準備から公開まで．公式ドキュメントは`gh-pages`ブランチを使ってGihHub Pagesを公開する方法で説明しているけれど、2016年8月からmasterブランチに`docs`フォルダを作ってページを公開する方法が使えるようになったのでそちらを使う．GitHubのユーザ名がsn2562，リポジトリ名がpiyoとして以下のコマンドを順番に実行する．
+まずはファイル全体をgitの管理下に置くための下準備から公開まで．公式ドキュメントは`gh-pages`ブランチを使ってGihHub Pagesを公開する方法で説明しているけれど，2016年8月からmasterブランチに`docs`フォルダを作ってページを公開する方法が使えるようになったのでそちらを使う．GitHubのユーザ名がsn2562，リポジトリ名がpiyoとして以下のコマンドを順番に実行する．
 
 ```
 $ git init
@@ -136,23 +136,23 @@ $ git push origin master
 
 ## デプロイの自動化
 ### デプロイってなーに？
-作ったものをサーバにアップロードし、他の人も利用できる状態にすること．ソフトウェアのリリースやインストールも含んだ意味の広い言葉．
+作ったものをサーバにアップロードし，他の人も利用できる状態にすること．ソフトウェアのリリースやインストールも含んだ意味の広い言葉．
 
 ### hugoのデプロイ
 [Hugo tutorials - Automated deployment](http://gohugo.io/tutorials/automated-deployments/)にデプロイ自動化チュートリアルがあった．[wercker](https://app.wercker.com) を使って記事の追加がリポジトリにpushされるたびにその他のところを全部自動でやるように設定する．
 
 正直gh-pages使ってないし，記事書いてhugoコマンド実行して変更をpushするだけだから自動化してもあんまり美味しい所ない?と思ったけどCIツールを勉強したかったのでやってみる．
 
-.ymlにwelckerがどういうふうに処理をすすめていくかの設定を書いてあげると、welckerが勝手にそのファイルを読んで自動で処理をしてくれる．
+.ymlにwelckerがどういうふうに処理をすすめていくかの設定を書いてあげると，welckerが勝手にそのファイルを読んで自動で処理をしてくれる．
 
 ### 参考
-- welckerを使うにあたって以下を一度読んでから始めると、ymlファイルの書き方とかとてもわかり易くてよかった．
+- welckerを使うにあたって以下を一度読んでから始めると，ymlファイルの書き方とかとてもわかり易くてよかった．
 	-[Werckerの仕組み，独自のboxとstepのつくりかた](http://deeeet.com/writing/2014/10/16/wercker/)
 
 ### Hugo tutorials - Automated deploymentのメモ
 
 #### Using Hugo-Build
-このステップで実際に.ymlファイルを使って`git push`した時にいろいろ自動でやってくれるのを確認している．BuildフェーズはGitHubとかにpushが来た時に、ビルドとかテストとかコンパイルをymlファイルに書かれた順番で走らせてくれる．何か変更があればそれをPackageとして次のDeployフェーズに渡してくれる．チュートリアルではBuildフェーズで以下の3つのステップを行っていた．
+このステップで実際に.ymlファイルを使って`git push`した時にいろいろ自動でやってくれるのを確認している．BuildフェーズはGitHubとかにpushが来た時に，ビルドとかテストとかコンパイルをymlファイルに書かれた順番で走らせてくれる．何か変更があればそれをPackageとして次のDeployフェーズに渡してくれる．チュートリアルではBuildフェーズで以下の3つのステップを行っていた．
 1. gitコマンドが使えるようにインストール
 2. テーマのダウンロード
 3. [arjen/hugo-build](https://app.wercker.com/applications/54a7744c6b3ba8733de4dcde/tab/details/)を実行
@@ -213,7 +213,7 @@ Wercker から GitHub Pagesへの自動デプロイを許可を出すためにGi
 これでwercker.ymlから$GIT_TOKENで参照できるようになる．
 
 pipelineを変更する．welcker > applicationからbuildの右側にくっついている+を押してさっきつくったdeployをくっつける．
-で、.ymlの方にdeployフェーズを追記してあげる．
+で，.ymlの方にdeployフェーズを追記してあげる．
 
 - buildフェーズ
 	1. [arjen/hugo-build](https://app.wercker.com/applications/54a7744c6b3ba8733de4dcde/tab/details/)を実行
@@ -270,12 +270,12 @@ deploy:
         basedir: public
 ```
 
-ただ、lukevivier/gh-pages使っちゃうと`gh-pages`ブランチ切ってそっちに追加していく感じになってしまうので今回みたいにmasterブランチのdocsフォルダで公開したいとき使えない...．
+ただ，lukevivier/gh-pages使っちゃうと`gh-pages`ブランチ切ってそっちに追加していく感じになってしまうので今回みたいにmasterブランチのdocsフォルダで公開したいとき使えない...．
 
 #### deploy
 - lukevivier/gh-pagesの実際の処理は[lvivier/step-gh-pages/run.sh](https://github.com/lvivier/step-gh-pages/blob/master/run.sh)から見ることができる．
 
-[hugo + Github Pagesでブログ作成に挑戦した話](http://eichann.github.io/post/first/)を参考にしながら、まずはローカルでシェルスクリプト`run.sh`を実行すれば記事の変更が適用されるようにする．
+[hugo + Github Pagesでブログ作成に挑戦した話](http://eichann.github.io/post/first/)を参考にしながら，まずはローカルでシェルスクリプト`run.sh`を実行すれば記事の変更が適用されるようにする．
 
 `run.sh`のなかみ
 
