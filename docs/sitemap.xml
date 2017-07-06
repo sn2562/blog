@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://sn2562.github.io/blog/post/20170706_hiveql/</loc>
+    <lastmod>2017-07-06T23:45:20+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sn2562.github.io/blog/post/20170624_hugo/</loc>
     <lastmod>2017-06-24T19:50:38+09:00</lastmod>
   </url>
@@ -24,6 +29,18 @@
   </url>
   
   <url>
+    <loc>https://sn2562.github.io/blog/tags/hadoop/</loc>
+    <lastmod>2017-07-06T23:45:20+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://sn2562.github.io/blog/tags/hiveql/</loc>
+    <lastmod>2017-07-06T23:45:20+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://sn2562.github.io/blog/tags/hugo/</loc>
     <lastmod>2017-06-24T19:50:38+09:00</lastmod>
     <priority>0</priority>
@@ -31,7 +48,7 @@
   
   <url>
     <loc>https://sn2562.github.io/blog/</loc>
-    <lastmod>2017-06-24T19:50:38+09:00</lastmod>
+    <lastmod>2017-07-06T23:45:20+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -43,7 +60,7 @@
   
   <url>
     <loc>https://sn2562.github.io/blog/post/</loc>
-    <lastmod>2017-06-24T19:50:38+09:00</lastmod>
+    <lastmod>2017-07-06T23:45:20+09:00</lastmod>
     <priority>0</priority>
   </url>
   

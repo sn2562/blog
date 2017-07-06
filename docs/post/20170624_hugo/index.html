@@ -63,24 +63,24 @@
 <!-- # hugoに数式を導入する -->
 
 <ul>
-<li><a href="https://gohugo.io/tutorials/mathjax/">HUGO MathJax</a> 公式の導入ドキュメント。</li>
-<li>日本語で書いてくれている人もいた。<a href="http://tubo28.me/blog/post/2015/03/22/mathjax/">MathJax の導入</a> ここの通りにやればできる。</li>
+<li><a href="https://gohugo.io/tutorials/mathjax/">HUGO MathJax</a> 公式の導入ドキュメント．</li>
+<li>日本語で書いてくれている人もいた．<a href="http://tubo28.me/blog/post/2015/03/22/mathjax/">MathJax の導入</a> ここの通りにやればできる．</li>
 </ul>
 
 <h2 id="mathjaxってなーに">MathJaxってなーに</h2>
 
-<p>HTMLやMarkdownのソースにLaTeX形式の構文で数式が書けるようにするJavaScriptライブラリ。</p>
+<p>HTMLやMarkdownのソースにLaTeX形式の構文で数式が書けるようにするJavaScriptライブラリ．</p>
 
 <h2 id="mathjaxの導入">MathJaxの導入</h2>
 
-<p>HUGO上でこのライブラリを読み込んで動かすのはすごく簡単。ページにMathJaxライブラリを読みこむ設定をする。themesフォルダにあるテンプレート下のlayouts/partials/footer.htmlに以下を追記する。</p>
+<p>HUGO上でこのライブラリを読み込んで動かすのはすごく簡単．ページにMathJaxライブラリを読みこむ設定をする．themesフォルダにあるテンプレート下のlayouts/partials/footer.htmlに以下を追記する．</p>
 
 <pre><code>&lt;script type=&quot;text/javascript&quot;
   src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
 &lt;/script&gt;
 </code></pre>
 
-<p>ちなみにMathJaxの公式は<a href="https://www.mathjax.org/cdn-shutting-down/">ここ</a>。2017/4/25でCDNのホスティングサイト閉じてしまっているらしかった。記事の中ほどで現在は <a href="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js">https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js</a> で公開中と紹介されていた。</p>
+<p>ちなみにMathJaxの公式は<a href="https://www.mathjax.org/cdn-shutting-down/">ここ</a>．2017/4/25でCDNのホスティングサイト閉じてしまっているらしかった．記事の中ほどで現在は <a href="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js">https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js</a> で公開中と紹介されていた．</p>
 
 <!--
 ## 書く
@@ -96,8 +96,8 @@
 
 <h2 id="ヒント">ヒント</h2>
 
-<p>Markdownと記法が競合するので、ここまでの設定では必ず数式を書く時は\でエスケープしなければいけない。長い数式を書く時には\がいっぱいになっちゃって大変。
-あとはインラインにしたい時&lt;div&gt;で囲う話しとか。そのへんのヒントが<a href="https://gohugo.io/tutorials/mathjax/">公式サイト</a>にまとめられている。</p>
+<p>Markdownと記法が競合するので，ここまでの設定では必ず数式を書く時は\でエスケープしなければいけない．長い数式を書く時には\がいっぱいになっちゃって大変．
+あとはインラインにしたい時&lt;div&gt;で囲う話しとか．そのへんのヒントが<a href="https://gohugo.io/tutorials/mathjax/">公式サイト</a>にまとめられている．</p>
 
 <p>layouts/partials/footer.html</p>
 
@@ -146,7 +146,8 @@ MathJax.Hub.Config({
 
           </div>
         </div>
-        <div class="pagination"> 
+        <div class="pagination">
+          <a class="btn previous " href="https://sn2562.github.io/blog/post/20170706_hiveql/"> Prev</a>  
           <a class="btn next " href="https://sn2562.github.io/blog/post/20170618_php/"> Next</a> 
         </div>
       </div>

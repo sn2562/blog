@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> HiveQL触り始めて初めて複合型と出会いましたメモ &middot; Memo </title>
+
+
+<link rel="stylesheet" href="https://sn2562.github.io/blog/css/slim.css">
+<link rel="stylesheet" href="https://sn2562.github.io/blog/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://sn2562.github.io/blog/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://sn2562.github.io/blog/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Memo" />
+
+
+<style type="text/css">
+    code.has-jax {font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;}
+
+    code{
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #0098C0;
+        background-color: #F8FBFF;
+        border-radius: 4px;
+    }
+</style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://sn2562.github.io/blog/">Memo</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+  
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://sn2562.github.io/blog/post/20170706_hiveql/">HiveQL触り始めて初めて複合型と出会いましたメモ</a></h2>
+          <span class="post-date">Jul 6, 2017 </span>
+          <div class="post-content">
+            
+
+<!-- # HiveQL触り始めたら初めて構造体と出会いましたメモ -->
+
+<p>最近HiveQLを触り始めたんですけれど、初めて複合型のarray〜とかstract〜と出会って戸惑ったので、そのメモです。</p>
+
+<h2 id="そもそもhiveqlってなーに">そもそもHiveQLってなーに</h2>
+
+<ul>
+<li>HDFS上に保存されたデータをテーブルとして見做しMapReduceを意識することなく、データを操作することができる</li>
+<li>SQLライクに書くことができる</li>
+<li>Facebook製</li>
+<li>Pigで代替可能(こっちは今は亡きYahoo!製)</li>
+</ul>
+
+<h2 id="複合型">複合型？</h2>
+
+<p>プリミティブ型(整数型とか文字列型)の他にも指定できる複合型があります。構造体・マップ・配列の3種類が利用できます。</p>
+
+<h3 id="構造体-struct">構造体 STRUCT</h3>
+
+<ul>
+<li><strong>STRUCT&lt;要素名:型, …&gt;</strong> で定義</li>
+
+<li><p>要素はピリオドで要素名を指定して取得</p>
+
+<pre><code># 構造体の各要素に要素名でアクセス
+&gt; select s.col1, s.col2 from s2;
+11 aa
+</code></pre></li>
+</ul>
+
+<h3 id="マップ型-map">マップ型 MAP</h3>
+
+<ul>
+<li><strong>Map&lt;keyの型, valueの型&gt;</strong> で定義</li>
+<li>値は角括弧でキーを指定して取得</li>
+<li>存在しないキーの場合はNULLを返す</li>
+
+<li><p>size関数でマップの要素数を取得</p>
+
+<pre><code># MAPの各値にKEY名でアクセス
+&gt; select m['b'], m['zzz'] from m1;
+1 NULL
+
+# MAPの要素数を取得
+&gt; select size(m) from m1;
+3
+</code></pre></li>
+</ul>
+
+<h3 id="配列型-array">配列型 ARRAY</h3>
+
+<ul>
+<li><strong>ARRAY&lt;型&gt;</strong> で定義</li>
+<li>配列の要素は角括弧で添字を指定して取得</li>
+<li>添字には負の数は指定できない</li>
+<li>配列サイズを超えた添字の場合はNULLを返す</li>
+<li>配列サイズはsize関数で取得</li>
+<li>explode関数で配列の要素毎に処理を行う</li>
+<li>posexplode関数で配列の各要素とインデックス番号を取得して処理を行う</li>
+</ul>
+
+<pre><code># 配列の各要素に添字でアクセス
+&gt; select a[0], a[2], a[3] from a1;
+aa cc NULL
+
+# 配列の要素数を取得
+&gt; select size(a) from a1;
+3
+
+# explode関数で配列の要素を行として展開
+&gt; select explode(a) e from a1;
+aa
+bb
+cc
+
+# LATERAL VIEW句+posexplode関数で各要素とインデックス番号を取得
+&gt; LATERAL VIEW (item_ids) item_ids_table AS item_index, itemId
+</code></pre>
+
+<h2 id="複合型と便利な機能">複合型と便利な機能</h2>
+
+<h3 id="explode関数-及びposexplode関数">explode関数、及びposexplode関数</h3>
+
+<ul>
+<li>配列型、MAP型はexplode関数でその値やkey値を展開</li>
+<li>配列型はposexplode関数で配列の添字と一緒に値を展開</li>
+</ul>
+
+<pre><code># explode関数で配列の要素を行として展開
+&gt; select explode(a) as col from a1;
+# とか
+&gt; select explode(array('aa','bb','cc')) as col;
+
+| col    |
+| ------ |
+| aa     |
+| bb     |
+| cc     |
+
+
+# explode関数でMAPの要素を行として展開
+&gt; select explode(map('A',10,'B',20,'C',30)) as key,val;
+
+| key    | val    |
+| ------ | ------ |
+| A      | 10     |
+| B      | 20     |
+| C      | 30     |
+
+
+# posexplode関数で配列の要素を添え字といっしょに展開
+&gt; select posexplode(array('aa','bb','cc')) as (pos,val);
+
+| pos    | val    |
+| ------ | ------ |
+| 0      | aa     |
+| 1      | bb     |
+| 2      | cc     |
+</code></pre>
+
+<p>上記は対象のカラムが1つしか無いのですが、普通はたくさんのカラムがあるので以下のようになります。</p>
+
+<pre><code># 以下のArray&lt;int&gt;型のmyColカラムベースとして扱う
+| Array&lt;int&gt; myCol |
+| ---------------- |
+| [100,200,300]    |
+| [400,500,600]    |
+
+
+# explode関数で配列の中身を展開する
+&gt; SELECT explode(myCol) AS myNewCol FROM myTable;
+| myNewCol |
+| -------- |
+| 100      |
+| 200      |
+| 300      |
+| 400      |
+| 500      |
+| 600      |
+
+
+# posexplode関数で配列の中身を添え字と一緒に展開する
+&gt; SELECT posexplode(myCol) AS pos, myNewCol FROM myTable;
+| pos    | myNewCol |
+| ------ | -------- |
+| 3      | 300      |
+| 3      | 600      |
+| 2      | 200      |
+| 2      | 500      |
+| 1      | 100      |
+| 1      | 400      |
+
+</code></pre>
+
+<p>↓調べる予定じゃなかったんだけどこういうこともできるらしい。</p>
+
+<pre><code># inline関数でSTRUCTS型の配列に対して、STRUCT型を一行として展開
+&gt; select inline(array(struct('A',10,date '2015-01-01'),struct('B',20,date '2016-02-02'))) as (col1,col2,col3);
+| col1   | col2   | col3       |
+| ------ | ------ | ---------- |
+| A      | 10     | 2015-01-01 |
+| B      | 20     | 2016-02-02 |
+</code></pre>
+
+<h3 id="lateral-view句">LATERAL VIEW句</h3>
+
+<ul>
+<li>explodeやposexplodeなどのテーブル生成関数と組み合わせて使用
+-</li>
+</ul>
+
+<pre><code># pageid（ページの名前）とadid_list（ページに表示される広告の配列）という2つのカラムを持つテーブルに対して、2つのレコードがある状態を想定
+。
+| pageid (STRING) | adid_list (Array&lt;int&gt;) |
+| --------------- | ---------------------- |
+| front_page      | [1, 2, 3]              |
+| contact_page    | [3, 4, 5]              |
+
+# explode関数を使ってadid_listを別々の行に分け、対応するpageidをLATERAL VIEWで取得。
+# (key,value)をセットにしたタプルを返す感じ
+&gt; SELECT pageid, adid
+&gt; FROM pageAds LATERAL VIEW explode(adid_list) adTable AS adid;
+
+| pageid (string) | adid (int) |
+| --------------- | ---------- |
+| &quot;front_page&quot;    | 1          |
+| &quot;front_page&quot;    | 2          |
+| &quot;front_page&quot;    | 3          |
+| &quot;contact_page&quot;  | 3          |
+| &quot;contact_page&quot;  | 4          |
+| &quot;contact_page&quot;  | 5          |
+
+# 広告の合計表示回数を数え上げる。
+&gt; SELECT adid, count(1)
+&gt; FROM pageAds LATERAL VIEW explode(adid_list) adTable AS adid
+&gt; GROUP BY adid;
+
+</code></pre>
+
+<h2 id="お世話になりましたlink集">お世話になりましたLINK集</h2>
+
+<ul>
+<li><a href="http://labs.opentone.co.jp/?p=1860">Hadoop/Hive　SQLライクなクエリを使ってビッグデータ解析（前編）</a>
+
+<ul>
+<li>データ型とテーブル作成、データの保存の一連の流れについて参考にしました</li>
+</ul></li>
+<li><a href="http://www.ne.jp/asahi/hishidama/home/tech/apache/hive/type.html">HiveQL データ型</a>
+
+<ul>
+<li>複合型の定義の仕方、説明、HiveQL例について参考にしました</li>
+</ul></li>
+<li><a href="http://kakts-tec.hatenablog.com/entry/2017/04/25/234644">Hive posexplode関数を使った配列操作について (配列のインデックスを保持したまま処理を行う方法)</a>
+
+<ul>
+<li>配列データのクエリによる操作について参考にしました</li>
+</ul></li>
+<li><a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-explode">Apache Hive - LanguageManual UDF</a>
+
+<ul>
+<li>本家ドキュメント。explode関数、及びposexplode関数、LATERAL VIEW句の挙動について参考にしました</li>
+</ul></li>
+<li><a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView">Apache Hive - LanguageManual LateralView</a>
+
+<ul>
+<li>本家ドキュメント。eLATERAL VIEW句の挙動について参考にしました</li>
+</ul></li>
+</ul>
+
+          </div>
+        </div>
+        <div class="pagination"> 
+          <a class="btn next " href="https://sn2562.github.io/blog/post/20170624_hugo/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+    
+    <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+    
+</div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+        extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+});
+</script>
+
+  </div>
+  <script src="https://sn2562.github.io/blog/js/slim.js"></script>
+  <script src="https://sn2562.github.io/blog/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+</body>
+
+</html>

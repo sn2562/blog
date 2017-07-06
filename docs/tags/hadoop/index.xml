@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hadoop on Memo</title>
+    <link>https://sn2562.github.io/blog/tags/hadoop/</link>
+    <description>Recent content in Hadoop on Memo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>UTF-8</language>
+    <lastBuildDate>Thu, 06 Jul 2017 23:45:20 +0900</lastBuildDate>
+    
+	<atom:link href="https://sn2562.github.io/blog/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HiveQL触り始めて初めて複合型と出会いましたメモ</title>
+      <link>https://sn2562.github.io/blog/post/20170706_hiveql/</link>
+      <pubDate>Thu, 06 Jul 2017 23:45:20 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/post/20170706_hiveql/</guid>
+      <description>最近HiveQLを触り始めたんですけれど、初めて複合型のarray〜とかstract〜と出会って戸惑ったので、そのメモです。
+そもそもHiveQLってなーに  HDFS上に保存されたデータをテーブルとして見做しMapReduceを意識することなく、データを操作することができる SQLライクに書くことができる Facebook製 Pigで代替可能(こっちは今は亡きYahoo!製)  複合型？ プリミティブ型(整数型とか文字列型)の他にも指定できる複合型があります。構造体・マップ・配列の3種類が利用できます。
+構造体 STRUCT  STRUCT&amp;lt;要素名:型, …&amp;gt; で定義 要素はピリオドで要素名を指定して取得
+# 構造体の各要素に要素名でアクセス &amp;gt; select s.col1, s.col2 from s2; 11 aa   マップ型 MAP  Map&amp;lt;keyの型, valueの型&amp;gt; で定義 値は角括弧でキーを指定して取得 存在しないキーの場合はNULLを返す size関数でマップの要素数を取得
+# MAPの各値にKEY名でアクセス &amp;gt; select m[&#39;b&#39;], m[&#39;zzz&#39;] from m1; 1 NULL # MAPの要素数を取得 &amp;gt; select size(m) from m1; 3   配列型 ARRAY  ARRAY&amp;lt;型&amp;gt; で定義 配列の要素は角括弧で添字を指定して取得 添字には負の数は指定できない 配列サイズを超えた添字の場合はNULLを返す 配列サイズはsize関数で取得 explode関数で配列の要素毎に処理を行う posexplode関数で配列の各要素とインデックス番号を取得して処理を行う  # 配列の各要素に添字でアクセス &amp;gt; select a[0], a[2], a[3] from a1; aa cc NULL # 配列の要素数を取得 &amp;gt; select size(a) from a1; 3 # explode関数で配列の要素を行として展開 &amp;gt; select explode(a) e from a1; aa bb cc # LATERAL VIEW句+posexplode関数で各要素とインデックス番号を取得 &amp;gt; LATERAL VIEW (item_ids) item_ids_table AS item_index, itemId  複合型と便利な機能 explode関数、及びposexplode関数  配列型、MAP型はexplode関数でその値やkey値を展開 配列型はposexplode関数で配列の添字と一緒に値を展開  # explode関数で配列の要素を行として展開 &amp;gt; select explode(a) as col from a1; # とか &amp;gt; select explode(array(&#39;aa&#39;,&#39;bb&#39;,&#39;cc&#39;)) as col; | col | | ------ | | aa | | bb | | cc | # explode関数でMAPの要素を行として展開 &amp;gt; select explode(map(&#39;A&#39;,10,&#39;B&#39;,20,&#39;C&#39;,30)) as key,val; | key | val | | ------ | ------ | | A | 10 | | B | 20 | | C | 30 | # posexplode関数で配列の要素を添え字といっしょに展開 &amp;gt; select posexplode(array(&#39;aa&#39;,&#39;bb&#39;,&#39;cc&#39;)) as (pos,val); | pos | val | | ------ | ------ | | 0 | aa | | 1 | bb | | 2 | cc |  上記は対象のカラムが1つしか無いのですが、普通はたくさんのカラムがあるので以下のようになります。</description>
+    </item>
+    
+  </channel>
+</rss>
