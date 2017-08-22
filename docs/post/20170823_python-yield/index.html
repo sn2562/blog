@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> PythonのYieldキーワードとの初めての出会い &middot; Memo </title>
+
+
+<link rel="stylesheet" href="https://sn2562.github.io/blog/css/slim.css">
+<link rel="stylesheet" href="https://sn2562.github.io/blog/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://sn2562.github.io/blog/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://sn2562.github.io/blog/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Memo" />
+
+
+<style type="text/css">
+    code.has-jax {font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;}
+
+    code{
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #0098C0;
+        background-color: #F8FBFF;
+        border-radius: 4px;
+    }
+</style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://sn2562.github.io/blog/">Memo</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+  
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://sn2562.github.io/blog/post/20170823_python-yield/">PythonのYieldキーワードとの初めての出会い</a></h2>
+          <span class="post-date">Aug 23, 2017 </span>
+          <div class="post-content">
+            
+
+<p>pythonのサンプルを見てて初めて yield に出会ってなんだ君は，ってなったのでメモ．</p>
+
+<h2 id="調べた">調べた</h2>
+
+<p>個人的に <a href="https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do">stack overflow - What does the “yield” keyword do?</a> で回答してくださってる方の説明がとてもとてもわかりやすかったので，英語の説明を自分なりに解釈したものをつらつらと載せます．</p>
+
+<p>どうやら，<code>yield</code>を理解するにはまず<code>generator</code>なものたちについて理解したほうがよくて，そのためには<code>generator</code>なものたちのモトである<code>iterable</code>なものたちについて知っておくといいようです．</p>
+
+<h2 id="iterable-なものたち">Iterable なものたち</h2>
+
+<p>for&hellip; in&hellip; の形で書いて中身をじゅんぐりに取り出せるようなもののこと全部．</p>
+
+<pre><code>&gt;&gt;&gt; mylist = [1, 2, 3]
+&gt;&gt;&gt; for i in mylist:
+...    print(i)
+1
+2
+3
+
+&gt;&gt;&gt; mylist = [x*x for x in range(3)]
+&gt;&gt;&gt; for i in mylist:
+...    print(i)
+0
+1
+4
+</code></pre>
+
+<p>使いやすいけど，全部の値をはじめに持っておかないといけないから沢山の値が必要なときに良くないし，そもそも全部使わないこともあるから無駄．そういうときは Generator 使うと良いらしい．</p>
+
+<h2 id="generator-たちをつかおう">Generator たちをつかおう</h2>
+
+<p>GeneratorたちもIterable なものたちのうちのひとつ．だけどその要素はその都度生成されるもので，<strong>一度だけ</strong>　しか使わない．全ての値をメモリに取っておくということはしないし，このこたちは <strong>その場で即座に</strong> 必要な値を作ってくれる．</p>
+
+<pre><code>&gt;&gt;&gt; mygenerator = (x*x for x in range(3))
+&gt;&gt;&gt; for i in mygenerator:
+...    print(i)
+0
+1
+4
+</code></pre>
+
+<p><code>()</code>の代わりに<code>[]</code>を使ってもおんなじ．mygenerator は二度使うことはできない．0を出力したら，もうそのことを忘れて次は1を，最後に4を，じゅんぐりに一つずつ出力するだけ．</p>
+
+<h2 id="yield-君はなんなんだ">Yield，君はなんなんだ</h2>
+
+<p><code>yield</code>キーワードは，使い方は<code>return</code>とにてる．関数から Generator を返すときに使う．</p>
+
+<pre><code>&gt;&gt;&gt; def createGenerator():
+...    mylist = range(3)
+...    for i in mylist:
+...        yield i*i
+...
+&gt;&gt;&gt; mygenerator = createGenerator() # create a generator
+&gt;&gt;&gt; print(mygenerator) # mygenerator is an object!
+&lt;generator object createGenerator at 0xb7555c34&gt;
+&gt;&gt;&gt; for i in mygenerator:
+...     print(i)
+0
+1
+4
+</code></pre>
+
+<p>generator を作っている関数は，呼び出された時には関数の内部に書かれたコード自体は処理されないということを理解しなくちゃいけない．生成した generator が使われるたびに，関数の中の処理が実行される．</p>
+
+<p>肝心なところ:
+最初に<code>for</code>文で関数を使って作った generator を呼び出した時に，その元の関数も最初から<code>yield</code>キーワードが出てくるまで実行される．で，<code>yield</code>キーワードを見つけたらそのタイミングでループの一番最初の値の<code>0</code>を返す．その後， generator が使われるたび関数の中のloop文が繰り返され，返す値がなくなるまで続ける．</p>
+
+<p>なんとなくわかった気がする&hellip;．</p>
+
+<h2 id="links">LINKS</h2>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do">stack overflow - What does the “yield” keyword do?</a>
+
+<ul>
+<li>Iterables, Generatorsのさんこうに</li>
+</ul></li>
+<li><a href="http://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-python/">Writing an Hadoop MapReduce Program in Python</a>
+
+<ul>
+<li>はじめての出会いはこっち．今だにyieldキーワードを使うとなにがよくなるのかわかってない&hellip;．</li>
+</ul></li>
+</ul>
+
+          </div>
+        </div>
+        <div class="pagination"> 
+          <a class="btn next " href="https://sn2562.github.io/blog/post/20170730_python/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+    
+    <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+    
+</div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+        extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+});
+</script>
+
+  </div>
+  <script src="https://sn2562.github.io/blog/js/slim.js"></script>
+  <script src="https://sn2562.github.io/blog/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+</body>
+
+</html>

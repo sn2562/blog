@@ -6,10 +6,25 @@
     <description>Recent content on Memo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Sun, 30 Jul 2017 12:54:32 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 23 Aug 2017 00:14:29 +0900</lastBuildDate>
     
 	<atom:link href="https://sn2562.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PythonのYieldキーワードとの初めての出会い</title>
+      <link>https://sn2562.github.io/blog/post/20170823_python-yield/</link>
+      <pubDate>Wed, 23 Aug 2017 00:14:29 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/post/20170823_python-yield/</guid>
+      <description>pythonのサンプルを見てて初めて yield に出会ってなんだ君は，ってなったのでメモ．
+調べた 個人的に stack overflow - What does the “yield” keyword do? で回答してくださってる方の説明がとてもとてもわかりやすかったので，英語の説明を自分なりに解釈したものをつらつらと載せます．
+どうやら，yieldを理解するにはまずgeneratorなものたちについて理解したほうがよくて，そのためにはgeneratorなものたちのモトであるiterableなものたちについて知っておくといいようです．
+Iterable なものたち for&amp;hellip; in&amp;hellip; の形で書いて中身をじゅんぐりに取り出せるようなもののこと全部．
+&amp;gt;&amp;gt;&amp;gt; mylist = [1, 2, 3] &amp;gt;&amp;gt;&amp;gt; for i in mylist: ... print(i) 1 2 3 &amp;gt;&amp;gt;&amp;gt; mylist = [x*x for x in range(3)] &amp;gt;&amp;gt;&amp;gt; for i in mylist: ... print(i) 0 1 4  使いやすいけど，全部の値をはじめに持っておかないといけないから沢山の値が必要なときに良くないし，そもそも全部使わないこともあるから無駄．そういうときは Generator 使うと良いらしい．
+Generator たちをつかおう GeneratorたちもIterable なものたちのうちのひとつ．だけどその要素はその都度生成されるもので，一度だけ　しか使わない．全ての値をメモリに取っておくということはしないし，このこたちは その場で即座に 必要な値を作ってくれる．
+&amp;gt;&amp;gt;&amp;gt; mygenerator = (x*x for x in range(3)) &amp;gt;&amp;gt;&amp;gt; for i in mygenerator: .</description>
+    </item>
     
     <item>
       <title>virtualenvが使えるようになりたい</title>
