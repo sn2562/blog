@@ -56,5 +56,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Tag1</title>
+      <link>https://sn2562.github.io/blog/tags/tag1/</link>
+      <pubDate>Sun, 30 Jul 2017 12:54:32 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/tags/tag1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tag2</title>
+      <link>https://sn2562.github.io/blog/tags/tag2/</link>
+      <pubDate>Sun, 30 Jul 2017 12:54:32 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/tags/tag2/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

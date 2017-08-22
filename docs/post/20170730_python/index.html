@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> virtualenvが使えるようになりたい &middot; Memo </title>
+
+
+<link rel="stylesheet" href="https://sn2562.github.io/blog/css/slim.css">
+<link rel="stylesheet" href="https://sn2562.github.io/blog/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://sn2562.github.io/blog/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://sn2562.github.io/blog/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Memo" />
+
+
+<style type="text/css">
+    code.has-jax {font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;}
+
+    code{
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #0098C0;
+        background-color: #F8FBFF;
+        border-radius: 4px;
+    }
+</style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://sn2562.github.io/blog/">Memo</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+  
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://sn2562.github.io/blog/post/20170730_python/">virtualenvが使えるようになりたい</a></h2>
+          <span class="post-date">Jul 30, 2017 </span>
+          <div class="post-content">
+            
+
+<p>同じプログラムなのにインストールしてるPythonのバージョンが違ってprint文でSyntaxErrorとか怒られる〜！pyenvでバージョン切り替えはできるけどいちいち2と3切り替えるのしんどい〜あああ〜ってなってvirtualenv使おってなったメモです．</p>
+
+<ul>
+<li>環境 macOS Sierra (10.12.5)</li>
+<li><a href="https://virtualenv.pypa.io/en/stable/">Virtualenv</a>ドキュメントを眺める．</li>
+</ul>
+
+<h2 id="virtualenvってなーに">virtualenvってなーに</h2>
+
+<p>Pythonの色々なバージョンに対して独立した環境をつくるためのツール．</p>
+
+<p>たとえば以下のような状況．</p>
+
+<ul>
+<li>あるアプリケーションではversion1のライブラリを使っていて，別のアプリではversion2を使いたいとか，</li>
+<li>あるライブラリのバージョンを変えちゃって他のアプリケーションが使えなくならないようにしたりとか，</li>
+<li>他の人と一緒に使っている環境なので共有のsite-packagesディレクトリにパッケージのインストールが出来ないときとか</li>
+</ul>
+
+<p>うんうん．virtualenvを使うと他のvirtualenvで作成した環境とライブラリを共有しない独自のインストールディレクトリを持つ環境を作成できる．オプションでグローバルにインストールされたライブラリにアクセスしないとかもできるみたい．</p>
+
+<h2 id="導入">導入</h2>
+
+<p>pipでインストール</p>
+
+<pre><code>$ pip install virtualenv
+</code></pre>
+
+<h2 id="専用の環境を作る">専用の環境を作る</h2>
+
+<p>ENVディレクトリを指定して新しい仮想環境を作る．</p>
+
+<pre><code># 新しい仮想環境を作る．
+$ virtualenv ENV
+</code></pre>
+
+<p>上記コマンドで色々必要なものを準備してくれる．</p>
+
+<pre><code># 指定ディレクトリに自動的につくられたものたちの例
+ENV
+├── bin
+├── include
+├── lib
+└── pip-selfcheck.json
+</code></pre>
+
+<p>この環境にインストールされたパッケージはENV/lib/pythonX.X/site-packages/におかれる．
+作ったvirtualenv環境をアクティブにするには，用意されたシェルスクリプトを使うと楽．</p>
+
+<pre><code>$ source bin/activate
+</code></pre>
+
+<p>アクティブになるとプロンプトの先頭に(ENV)みたいな感じでどの仮想環境がアクティブなのか表示される．
+これでpip installするとこの環境用にいろいろいれることになる．</p>
+
+<p>終了するときはdeactivate．</p>
+
+<pre><code># 仮想環境を抜けまーす
+(ENV)$ deactivate
+</code></pre>
+
+<p>仮想環境の削除はdeactivateしてフォルダ削除すればOK．</p>
+
+<pre><code># 作った環境の削除
+(ENV)$ deactivate
+$ rm -r /path/to/ENV
+</code></pre>
+
+<h2 id="そのほかコマンド">そのほかコマンド</h2>
+
+<pre><code># バージョンの確認
+$ virtualenv --version
+15.1.0
+</code></pre>
+
+<pre><code># 使用するPythonの切り替え
+$ virtualenv -p PYTHON_EXE
+# とか
+$ virtualenv --python=PYTHON_EXE
+
+# 環境変数VIRTUALENV_PYTHONを設定すれば，上記と同じことができる
+$ export VIRTUALENV_PYTHON=PYTHON_EXE
+$ virtualenv ENV
+</code></pre>
+
+<h2 id="おまけ">おまけ</h2>
+
+<p>pyenvで現在のディレクトリ以下で有効なバージョン指定のやり方もメモ．</p>
+
+<pre><code># 適用されているバージョンの確認
+$ pyenv version
+3.4.2
+
+# 使えるpythonのバージョンの確認
+$ pyenv versions
+  system
+* 3.4.2
+  3.5.1
+  anaconda3-2.1.0
+  anaconda3-4.4.0
+  
+# バージョン指定
+$ pyenv local anaconda3-4.4.0
+
+# .python-versionというファイルが作られてバージョンが記録されているのがわかる
+$ cat .python-version
+anaconda3-4.4.0
+</code></pre>
+
+<h2 id="お世話になりましたlink集">お世話になりましたLINK集</h2>
+
+<ul>
+<li><a href="https://virtualenv.pypa.io/en/stable/">Virtualenv</a>
+
+<ul>
+<li>公式</li>
+</ul></li>
+<li><a href="http://qiita.com/_rdtr/items/22d99c6164af18c7e791">Mac OS Xで複数バージョンのPythonを利用する（２）利用編</a>
+
+<ul>
+<li>コマンド実行もろもろ</li>
+</ul></li>
+<li><a href="http://ymotongpoo.hatenablog.com/entry/2017/01/29/002039">Pythonの仮想環境構築 2017.01版</a>
+
+<ul>
+<li>ツッコミ</li>
+</ul></li>
+</ul>
+
+          </div>
+        </div>
+        <div class="pagination"> 
+          <a class="btn next " href="https://sn2562.github.io/blog/post/20170706_hiveql/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+    
+    <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+    
+</div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+        extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+});
+</script>
+
+  </div>
+  <script src="https://sn2562.github.io/blog/js/slim.js"></script>
+  <script src="https://sn2562.github.io/blog/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+</body>
+
+</html>

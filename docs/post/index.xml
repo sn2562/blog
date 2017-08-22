@@ -6,10 +6,30 @@
     <description>Recent content in Posts on Memo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Thu, 06 Jul 2017 23:45:20 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jul 2017 12:54:32 +0900</lastBuildDate>
     
 	<atom:link href="https://sn2562.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>virtualenvが使えるようになりたい</title>
+      <link>https://sn2562.github.io/blog/post/20170730_python/</link>
+      <pubDate>Sun, 30 Jul 2017 12:54:32 +0900</pubDate>
+      
+      <guid>https://sn2562.github.io/blog/post/20170730_python/</guid>
+      <description>同じプログラムなのにインストールしてるPythonのバージョンが違ってprint文でSyntaxErrorとか怒られる〜！pyenvでバージョン切り替えはできるけどいちいち2と3切り替えるのしんどい〜あああ〜ってなってvirtualenv使おってなったメモです．
+ 環境 macOS Sierra (10.12.5) Virtualenvドキュメントを眺める．  virtualenvってなーに Pythonの色々なバージョンに対して独立した環境をつくるためのツール．
+たとえば以下のような状況．
+ あるアプリケーションではversion1のライブラリを使っていて，別のアプリではversion2を使いたいとか， あるライブラリのバージョンを変えちゃって他のアプリケーションが使えなくならないようにしたりとか， 他の人と一緒に使っている環境なので共有のsite-packagesディレクトリにパッケージのインストールが出来ないときとか  うんうん．virtualenvを使うと他のvirtualenvで作成した環境とライブラリを共有しない独自のインストールディレクトリを持つ環境を作成できる．オプションでグローバルにインストールされたライブラリにアクセスしないとかもできるみたい．
+導入 pipでインストール
+$ pip install virtualenv  専用の環境を作る ENVディレクトリを指定して新しい仮想環境を作る．
+# 新しい仮想環境を作る． $ virtualenv ENV  上記コマンドで色々必要なものを準備してくれる．
+# 指定ディレクトリに自動的につくられたものたちの例 ENV ├── bin ├── include ├── lib └── pip-selfcheck.json  この環境にインストールされたパッケージはENV/lib/pythonX.X/site-packages/におかれる． 作ったvirtualenv環境をアクティブにするには，用意されたシェルスクリプトを使うと楽．
+$ source bin/activate  アクティブになるとプロンプトの先頭に(ENV)みたいな感じでどの仮想環境がアクティブなのか表示される． これでpip installするとこの環境用にいろいろいれることになる．
+終了するときはdeactivate．
+# 仮想環境を抜けまーす (ENV)$ deactivate  仮想環境の削除はdeactivateしてフォルダ削除すればOK．
+# 作った環境の削除 (ENV)$ deactivate $ rm -r /path/to/ENV  そのほかコマンド # バージョンの確認 $ virtualenv --version 15.</description>
+    </item>
     
     <item>
       <title>HiveQL触り始めて初めて複合型と出会いましたメモ</title>
